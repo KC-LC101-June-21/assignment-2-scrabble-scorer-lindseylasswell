@@ -2,9 +2,10 @@
 
 const input = require("readline-sync");
 
-let simpleScore;
+// let simpleScore;
 
-let vowelBonusScore;
+// let vowelBonusScore;
+let word = " ";
 
 let scrabbleScore;
 
@@ -28,6 +29,47 @@ const oldPointStructure = {
   10: ['Q', 'Z']
 };
 
+const vowelsScore = {
+  3: ['A', 'E', 'I', 'O', 'U'],
+  1: ['B','C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
+};
+
+
+// your job is to finish writing these functions and variables that we've named //
+// don't change the names or your program won't work as expected. //
+
+function initialPrompt() {
+    userWord = input.question("Let's play some scrabble! Enter a word to score:");
+    // oldScrabbleScorer(userWord); //input userWord into oldScrabbleScorer function for letter score
+    return userWord;
+};
+
+//functions for scoringAlgorithms
+function simpleScore(word) {
+  for (let i = 0; i <= userWord.length; i++) {
+    simpleNumber = i;
+  }
+  console.log(simpleNumber)
+  return simpleNumber
+};
+
+function vowelBonusScore(word) {
+  let letterPoints = 0;
+  word = word.toUpperCase();
+
+	for (let i = 0; i < word.length; i++) {
+ 
+	  for (const pointValue in vowelsScore) {
+ 
+		 if (vowelsScore[pointValue].includes(word[i])) {
+			letterPoints += `Points for '${word[i]}': ${pointValue} \n`
+		 };
+    
+	  }   console.log(`Total number of points: ${letterPoints}.`);
+	}
+	return letterPoints;
+}
+
 function oldScrabbleScorer(word) {
 	word = word.toUpperCase();
 	let letterPoints = "";
@@ -45,73 +87,55 @@ function oldScrabbleScorer(word) {
 	return letterPoints;
  }
 
-// your job is to finish writing these functions and variables that we've named //
-// don't change the names or your program won't work as expected. //
-
-function initialPrompt() {
-    userWord = input.question("Let's play some scrabble! Enter a word to score:");
-    // oldScrabbleScorer(userWord); //input userWord into oldScrabbleScorer function for letter score
-    return userWord;
-};
-
-simpleScore = function(userWord) {
-  for (let i = 0; i <= userWord.length; i++) {
-    simpleNumber = i;
-  }
-  console.log(simpleNumber)
-  return simpleNumber
-};
-
-vowelBonusScore = function(userWord) {
-  let score = 0;
-  for (i=0; i<userWord.length; i++) {
-    if (userWord[i] ==['a','e','i','o','u']); {
-      // console.log(i);
-      score += 3;
-      // console.log(score);
-    } 
-      score += 1;
-  };
-  console.log(score);
-  return score;
-};
 //creating objects for scoringAlgorithms
 let simple = {
   name: 'Simple Score',
   description: 'Each letter is worth 1 point.',
-  function: simpleScore(userWord),
+  function: simpleScore(word),
 };
 
 let vowels = {
   name: 'Bonus Vowels',
   description: 'Vowels are 3 pts, consonants are 1 pt.',
-  function: vowelBonusScore(userWord),
+  function: vowelBonusScore(word),
 };
 
 let scrabble = {
   name: 'Scrabble',
   description: 'The traditional scoring algorithm.',
-  function: oldScrabbleScorer(userWord),
+  function: oldScrabbleScorer(word),
 };
 
 scoringAlgorithms = [simple, vowels, scrabble]; //algorithm for storing types of scoring
 
 function scorerPrompt() {
-  let scoreType = input.question(`Select your score type: \n 
-  0 - ${scoringAlgorithms[0]name}: {scoringAlgorithms[0].description} \n
-  1 - ${scoringAlgorithms[1]name}: ${scoringAlgorithms[1].description} \n
-  2 - ${scoringAlgorithms[2]name}: ${scoringAlgorithms[2].description} \n`);
-
+  console.log(`Which scoring algorithm would you like to use?\n 
+  0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description} \n
+  1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description} \n
+  2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description} \n`);
+  let scoreType = input.question(`Enter 0, 1, or 2: `);
   console.log(`You chose ${scoreType} for ${scoringAlgorithms[scoreType].name}`);
-  return scoreType;
-}
-console.log(scoringAlgorithms);
+ 
+  if (scoreType == 0) {
+    simpleScore(word); 
+    } else if (scoreType == 1) {
+      vowelBonusScore(word);
+    } else if (scoreType == 2) {
+      oldScrabbleScorer(word); 
+    } else {
+      console.log(`${scoreType} is not one of the choices. Please try again.`);
+    };
+} 
 
-function runProgram(userWord) {
+// console.log(scoringAlgorithms);
+
+function runProgram(word) {
   initialPrompt();
-  scorerPrompt();
-  // vowelBonusScore(userWord);
+  scorerPrompt(word);
+  // vowelBonusScore();
 };
+
+runProgram(userWord)
 
 
 // Don't write any code below this line //
