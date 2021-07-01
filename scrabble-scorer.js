@@ -96,7 +96,7 @@ transform = function(userWord) {
   } return newPointStructure;
 }
 
-scrabblescore = function(userWord) {
+function scrabbleScore(userWord) {
   for (let i = 0; i < userWord.length; i++) {
     // for (const points in newPointStructure) {
       if (newPointStructure[points].includes(userWord[i])) {
