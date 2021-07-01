@@ -90,7 +90,7 @@ transform = function(oldPointStructure, userWord) {
     for (const pointValue in oldPointStructure) {
       // console.log(oldPointStructure[pointValue].length)
     for (let i = 0; i < oldPointStructure[pointValue].length; i++) {
-      newPointStructure[oldPointStructure[pointValue][i]] = pointValue
+      newPointStructure[oldPointStructure[pointValue][i]] = Number(pointValue);
     
 	}
   } return newPointStructure;
