@@ -10,9 +10,10 @@ let scrabbleScore;
 // let userWord = " ";
 let simpleNumber;
 let scoringAlgorithms = [];
+let lowercased = [];
+let newPointStructure = {};
 
 
-let newPointStructure;
 
 const oldPointStructure = {
   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
@@ -85,10 +86,25 @@ oldScrabbleScorer = function(word) {
 	return letterPoints;
  }
 
-function transform(oldPointStructure) {
+transform = function(oldPointStructure, userWord) {
+    for (const pointValue in oldPointStructure) {
+      // console.log(oldPointStructure[pointValue].length)
+    for (let i = 0; i < oldPointStructure[pointValue].length; i++) {
+      newPointStructure[oldPointStructure[pointValue][i]] = pointValue
+    
+	}
+  } return newPointStructure;
+}
 
-};
-
+scrabblescore = function(newPointStructure, userWord) {
+  for (let i = 0; i < userWord.length; i++) {
+    for (const points in newPointStructure) {
+      if (newPointStructure[points].includes(userWord[i])) {
+			  letterPoints += Number(points);
+    }
+    }
+}
+}
 //creating objects for scoringAlgorithms
 let simple = {
   name: 'Simple Score',
@@ -105,7 +121,7 @@ let vowels = {
 let scrabble = {
   name: 'Scrabble',
   description: 'The traditional scoring algorithm.',
-  scoreFunction: oldScrabbleScorer,
+  scoreFunction: scrabbleScore,
 };
 
 scoringAlgorithms = [simple, vowels, scrabble]; //algorithm for storing types of scoring
@@ -137,6 +153,7 @@ function scorerPrompt(userWord) {
 function runProgram(word, letterPoints) {
   let userWord = initialPrompt();
   scorerPrompt(userWord);
+  transform(userWord);
 
   // vowelBonusScore();
 };
