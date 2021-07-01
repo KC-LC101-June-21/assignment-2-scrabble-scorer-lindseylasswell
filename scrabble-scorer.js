@@ -98,11 +98,12 @@ function transform(userWord) {
 
 function scrabbleScore(userWord) {
   for (let i = 0; i < userWord.length; i++) {
-    // for (const points in newPointStructure) {
+    for (const points in newPointStructure) {
       if (newPointStructure[points].includes(userWord[i])) {
 			  letterPoints += Number(points);
     }
     
+}
 }
 }
 //creating objects for scoringAlgorithms
