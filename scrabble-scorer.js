@@ -86,7 +86,7 @@ oldScrabbleScorer = function(word) {
 	return letterPoints;
  }
 
-transform = function(oldPointStructure, userWord) {
+transform = function(userWord) {
     for (const pointValue in oldPointStructure) {
       // console.log(oldPointStructure[pointValue].length)
     for (let i = 0; i < oldPointStructure[pointValue].length; i++) {
