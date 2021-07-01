@@ -5,7 +5,7 @@ const input = require("readline-sync");
 let simpleScore;
 let vowelBonusScore;
 // let word = "";
-let scrabbleScore;
+// let scrabbleScore;
 // let letterPoints = 0;
 // let userWord = " ";
 let simpleNumber;
